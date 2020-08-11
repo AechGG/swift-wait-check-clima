@@ -50,8 +50,12 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
         return false;
     }
     
-    func didUpdateWeather(weather: WeatherModel) {
+    func didUpdateWeather(_ weatherManager: WeatherManager,_ weather: WeatherModel) {
         print(weather.tempString);
+    }
+    
+    func didFailWithError(_ error: Error) {
+        print(error);
     }
     
 }
