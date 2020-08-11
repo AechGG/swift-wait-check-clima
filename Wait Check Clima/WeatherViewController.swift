@@ -51,7 +51,12 @@ class WeatherViewController: UIViewController, UITextFieldDelegate, WeatherManag
     }
     
     func didUpdateWeather(_ weatherManager: WeatherManager,_ weather: WeatherModel) {
-        print(weather.tempString);
+        DispatchQueue.main.async {
+            self.temperatureLabel.text = weather.tempString;
+            self.conditionImageView.image = UIImage(systemName: weather.conditionName);
+            self.cityLabel.text = weather.cityName;
+        }
+        
     }
     
     func didFailWithError(_ error: Error) {
