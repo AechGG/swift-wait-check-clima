@@ -38,15 +38,18 @@ struct WeatherManager {
     func parseJSON(weatherData: Data) {
         let decoder = JSONDecoder();
         do {
-           let decodedData = try decoder.decode(WeatherData.self, from: weatherData);
-            print(decodedData.name);
-            print(decodedData.main.temp);
-            print(decodedData.weather[0].description);
+            let decodedData = try decoder.decode(WeatherData.self, from: weatherData);
+            let id = decodedData.weather[0].id;
+            let temp = decodedData.main.temp;
+            let name = decodedData.name;
+            
+            let weather = WeatherModel(conditionId: id, cityName: name, temp: temp);
+            print(weather.conditionName);
+            print(weather.tempString);
         } catch {
             print(error);
         }
         
     }
-    
     
 }
